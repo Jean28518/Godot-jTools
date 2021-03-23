@@ -4,7 +4,7 @@ Useful toolset for creating games with Godot Engine.
 It is intended to expand and modify the toolset on your needs.
 It is high customizable and offers a simple, but efficient basis.
 
-You can use this in your own prokject, even a commercial one.
+You can use this in your own project, even a commercial one.
 
 ## Features
 - Simple Save Manager
