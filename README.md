@@ -46,7 +46,7 @@ If this value doesn't exist, null is returned.
 ### jSettings
 Basic Settings Window. When you call the function `jSettings.open_window()`. The Settings window opens.
 
-You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`, `saveSettings()`, `updateSettingsWindows()`. Also add your own setter/getter functions in the end of the script.
+You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`, `saveSettings()`, `applySettings()` `updateSettingsWindows()`. Also add your own setter/getter functions in the end of the script.
 
 ### jTable
 Powerful table for godot. Usable ingame but also for editor plugins.
