@@ -188,21 +188,25 @@ func get_value_of(grid_address : int):
 	if node is CheckBox or node is CheckButton:
 		return node.pressed
 	
-	print("Node Type in jTable currently not supported. Add me! jTable.gd:189")
+	print("Node Type of " + node.name + " in jTable currently not supported. Add me! jTable.gd:189")
 	return 0
 		
 func set_value_to(grid_address : int, value):
 	var node = grid_node.get_child(grid_address)
 	if node is LineEdit:
 		node.text = value
+		return
 	if node is SpinBox:
 		node.value = value
+		return
 	if node is OptionButton:
 		node.selected = value
+		return
 	if node is CheckBox or node is CheckButton:
 		node.pressed = value
+		return
 		
-	print("Node Type in jTable currently not supported. Add me! jTable.gd:200")
+	print("Node Type of " + node.name + " in jTable currently not supported. Add me! jTable.gd:200")
 
 
 func _on_Save_pressed():

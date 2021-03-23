@@ -34,8 +34,8 @@ func play(soundPath : String, loop : bool = false, pausable : bool = true, volum
 		audioStreamPlayer.pause_mode  = 1
 	else:
 		audioStreamPlayer.pause_mode  = 2
-	owner = self
 	add_child(audioStreamPlayer)
+	audioStreamPlayer.owner = self
 	audioStreamPlayer.play()
 	
 	audioStreamPlayer.connect("finished", self, "queue_me_free", [audioStreamPlayer])
