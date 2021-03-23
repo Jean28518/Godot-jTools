@@ -56,12 +56,12 @@ func play_game_sound(soundPath : String, volume_db : float = 0.0):
 
 func set_main_volume_db(volume : float):
 	if jAudioManagerBus:
-		AudioServer.set_bus_volume_db(0, volume)
+		AudioServer.set_bus_volume_db(0, linear2db(volume))
 
 func set_game_volume_db(volume : float):
 	if jAudioManagerBus:
-		AudioServer.set_bus_volume_db(gameBusIdx, volume)
+		AudioServer.set_bus_volume_db(gameBusIdx, linear2db(volume))
 
 func set_music_volume_db(volume : float):
 	if jAudioManagerBus:
-		AudioServer.set_bus_volume_db(musicBusIdx, volume)
+		AudioServer.set_bus_volume_db(musicBusIdx, linear2db(volume))
