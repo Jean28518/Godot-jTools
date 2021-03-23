@@ -1,0 +1,21 @@
+[Settings]
+
+fullscreen=true
+shadows=true
+antiAliasing=2
+mainVolume=0.0
+musicVolume=0.0
+gameVolume=false
+
+[Main]
+
+exampleValue="I am a test value!"
+tableSettings={
+"Street": [ "Gubener Straße", "Büsingstrasse", "Karl-Liebknecht-Strasse" ],
+"city": [ "Bad Tölz", "Gilching", "Kaltenkirchen" ],
+"firstName": [ "Laura", "Kevin", "Monika" ],
+"gender": [ 1, 0, 0 ],
+"housenumber": [ "51", "94", "21" ],
+"lastName": [ "Hoch", "Egger", "Schweitzer" ],
+"postalCode": [ 83633.0, 82205.0, 24560.0 ]
+}

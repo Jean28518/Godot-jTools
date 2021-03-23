@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="JTools"
+run/main_scene="res://addons/jean28518.jTools/example/example.tscn"
+
+[autoload]
+
+jSaveManager="*res://addons/jean28518.jTools/jSaveManager/jSaveManager.gd"
+jAudioManager="*res://addons/jean28518.jTools/jAudioManager/JAudioManager.gd"
+jSettings="*res://addons/jean28518.jTools/jSettings/JSettings.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "jean28518.jTools" )
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
