@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="JTools"
 run/main_scene="res://addons/jean28518.jTools/example/example.tscn"
+config/icon="res://addons/jean28518.jTools/Icon.png"
 
 [autoload]
 
