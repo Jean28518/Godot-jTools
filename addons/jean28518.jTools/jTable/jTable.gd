@@ -169,6 +169,8 @@ func get_data():
 	
 func set_data(data):
 	clear_data()
+	if data == null:
+		return
 	for line in range(data[keys[0]].size()):
 		new_line()
 		for k in range(columns):
