@@ -30,6 +30,7 @@ margin_right = -6.0
 margin_bottom = -10.0
 headings = [ "Gender", "First Name", "Last Name", "Street", "Housenumber", "Postal Code", "City" ]
 keys = [ "gender", "firstName", "lastName", "Street", "housenumber", "postalCode", "city" ]
+minimum_column_size = 150
 show_save_button = true
 
 [node name="Gender" type="OptionButton" parent="Table/jTable"]

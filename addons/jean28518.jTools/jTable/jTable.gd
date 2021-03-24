@@ -70,7 +70,10 @@ func initialize():
 	labelI.name = "Space"
 	labelI.text = ""
 	labelI.size_flags_horizontal = Label.SIZE_EXPAND_FILL
-	labelI.rect_min_size.x = 170
+	if minimum_column_size < 175:
+		labelI.rect_min_size.x = 175
+	else:
+		labelI.rect_min_size.x = minimum_column_size
 	headings_node.add_child(labelI)
 	labelI.owner = self
 	
