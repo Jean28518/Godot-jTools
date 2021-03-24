@@ -12,11 +12,15 @@ func save_value(key : String, value):
 	config.save(save_path)
 
 func get_value(key):
-	return config.get_value("Main", key, null)
+	if config.has_section_key("Main", key):
+		return config.get_value("Main", key, null)
+	return null
 	
 func save_setting(key, value):
 	config.set_value("Settings", key, value)
 	config.save(save_path)
 	
 func get_setting(key):
-	return config.get_value("Settings", key, null)
+	if config.has_section_key("Settings", key):
+		return config.get_value("Settings", key, null)
+	return null

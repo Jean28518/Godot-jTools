@@ -1,3 +1,4 @@
+tool
 extends Control
 
 var line = -1
