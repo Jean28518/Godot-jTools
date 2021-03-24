@@ -28,8 +28,7 @@ var headings_node
 func _ready():
 	update_node_references()
 	update_button_configuration()
-	clear()
-	initialize()
+	clear_data()
 	pass # Replace with function body.
 
 func update_node_references():
@@ -44,8 +43,7 @@ func update_table_in_editor(newvar):
 	update_node_references()
 	update_button_configuration()
 	_update_table = false
-	clear()
-	initialize()
+	clear_data()
 
 
 func clear():
@@ -167,8 +165,7 @@ func get_data():
 	return data
 	
 func set_data(data):
-	clear()
-	initialize()
+	clear_data()
 	for line in range(data[keys[0]].size()):
 		new_line()
 		for k in range(columns):
@@ -214,7 +211,9 @@ func _on_Save_pressed():
 
 
 func _on_ClearTable_pressed():
-	clear()
-	initialize()
+	clear_data()
 	emit_signal("clear_table_pressed")
 
+func clear_data():
+	clear()
+	initialize()

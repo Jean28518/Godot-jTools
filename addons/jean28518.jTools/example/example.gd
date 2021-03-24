@@ -6,7 +6,7 @@ func _ready():
 	if tableData != null:
 		$Table/jTable.set_data(tableData)
 		
-		print("Loaded Table Data: " + String(tableData))
+#		print("Loaded Table Data: " + String(tableData))
 		
 	
 	## Play Music: (The music also plays while level loading ;)
@@ -32,7 +32,7 @@ func _on_jTable_saved_pressed(tableData):
 	jSaveManager.save_value("tableSettings", tableData)
 	
 	print("Saved Table Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")
-	print("Loaded Table Data: " + String(tableData))
+#	print("Loaded Table Data: " + String(tableData))
 
 
 ## Option Button ###############################################################
