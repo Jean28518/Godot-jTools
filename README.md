@@ -11,6 +11,7 @@ You can use this in your own project, even a commercial one.
 - Basic Settings Manager - Highly customizable and easy to use
 - Table - Adds powerful tables to Godot
 - Simple Audio Manager for playing music or game sounds
+- Other useful methods
 
 ## How to use jTools in your own project
 Just copy in the addons folder in to your Godot Project.
@@ -26,6 +27,11 @@ If you don't want to use this audio bus layout, set `jAudioManagerBus` in `JAudi
 
 ## Modules
 
+### jTools
+It's a collection of simple methods, which make programming a lot cleaner and easier.
+
+- **jTools.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jTools.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
+
 ### jSaveManager
 With it you can very easy save values of your game persistently.
 In code it can be accessed very easy over `jSaveManager`.
@@ -34,7 +40,7 @@ It stores all saved data at `res://jSaveManager.save`. It can be changed in the 
 #### How to use
 - **jSaveManager.save_value(key : String, value):** Stores a value with a specific key.
 
-- **jSaveManager.get_value(key : String)** Gets the value which is stored under that key.
+- **jSaveManager.get_value(key : String):** Gets the value which is stored under that key.
 If this value doesn't exist, null is returned.
 
 #### Example

@@ -64,3 +64,8 @@ func _on_Quit_pressed():
 ## Play Ingame Sound ###########################################################
 func _on_PlaySound_pressed():
 	jAudioManager.play_game_sound("res://addons/jean28518.jTools/example/SampleSound.ogg")
+
+
+func _on_PlayDelayedSound_pressed():
+	jTools.call_delayed($PlayDelayedSound/seconds.value, jAudioManager, "play_game_sound", ["res://addons/jean28518.jTools/example/SampleSound.ogg"])
+
