@@ -8,8 +8,10 @@ signal user_duplicated_entries(source_entry_names, duplicated_entry_names) # arr
 signal user_copied_entries(entry_names)
 signal user_pasted_entries(source_entry_names, source_jList_id, pasted_entry_names) 
 signal user_pressed_save(data) # array of strings (equal to entry_names)
+signal user_selected_entry(entry_name) # string
 
-export (String) var id = ""
+export (String) var _id = "_random"
+var id 
 export (String) var entry_duplicate_text = "_duplicate"
 
 export (bool) var only_unique_entries_allowed = true
@@ -146,9 +148,11 @@ func update_visible_buttons(newvar):
 func _enter_tree():
 	item_list = $VBoxContainer/ItemList
 	if owner != self:
-		if id == "":
+		if _id == "_random":
 			randomize()
 			id = String(randi())
+		else:
+			id = _id
 		jListManager.register_jList(self)
 
 func _exit_tree():
@@ -232,6 +236,8 @@ func _on_ItemList_item_activated(index):
 
 func _on_PopupDiaglog_Okay_pressed():
 	$PopupDialog.hide()
-	
-	
 
+func _on_ItemList_multi_selected(index, selected):
+	var selected_items = item_list.get_selected_items()
+	if selected_items.size() == 1:
+		emit_signal("user_selected_entry", item_list.get_item_text(selected_items[0]))

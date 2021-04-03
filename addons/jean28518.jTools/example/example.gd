@@ -73,7 +73,9 @@ func _on_jListExample2_user_pressed_save(data):
 	jSaveManager.save_value("jListExample2", data)
 	print("Saved jList Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")
 
-
+func _on_jListExample1_user_selected_entry(entry_name):
+	print("User selected " + entry_name)
+	
 ## (Pages) #####################################################################
 func _on_Page1_pressed():
 	$Table.show()
@@ -86,3 +88,4 @@ func _on_Page2_pressed():
 	$SaveLoadExample.hide()
 	$PlayDelayedSound.hide()
 	$Page2.show()
+

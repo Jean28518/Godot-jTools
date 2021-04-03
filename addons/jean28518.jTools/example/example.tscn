@@ -48,7 +48,6 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = -6.0
 margin_bottom = -6.0
-id = "MyTable1"
 enable_rename_button = true
 enable_duplicate_button = true
 enable_copy_button = true
@@ -76,7 +75,6 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = -6.0
 margin_bottom = -6.0
-id = "MyTable2"
 enable_add_button = false
 enable_paste_button = true
 enable_save_button = true
@@ -311,6 +309,7 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="user_selected_entry" from="Page2/jListExample1/jList" to="." method="_on_jListExample1_user_selected_entry"]
 [connection signal="saved_pressed" from="Table/jTable" to="." method="_on_jTable_saved_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Save" to="." method="_on_SaveSingleValue_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Load" to="." method="_on_Load_pressed"]

@@ -87,7 +87,7 @@ With it you can integrate an editable list very easily. jList is highly integrat
 Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. See the example.tscn in Page2 how the jLists where Setup.
 
 #### Customization
-- **ID**: You can give the jList a unique name, if you want. Over it you can access this jList via `jListManager.get_jList(id : String)` from everywhere in the code.
+- **ID**: You can give the jList a unique name, if you want. Over it you can access this jList via `jListManager.get_jList(id : String)` from everywhere in the code. Set it to `_random`, if a random id should be generated.
 - **Entry Duplicate Text**: If only unique entries are allowed in this list, this string will be appended after the actual text.
 - **Only Unique Entries allowed**: If this one is activated: If an added entry has the same text as an other one in this jList, it will be made unique by appending e.g. `_duplicate` to the new entry
 - **Update**: If you check this one, the configuration of the Button Configuration will be updated
@@ -122,6 +122,7 @@ Signals are just emitted, if the user itself does something. While calling funct
 - **user_copied_entries(entry_names : String)**
 - **user_pasted_entries(source_entry_names : Array, source_jList_id : String, pasted_entry_names : Array)** (arrays of strings)
 - **user_pressed_save(data : Array)** (array of strings, data is equal to entry_names)
+- **user_selected_entry(entry_name : String)**: This signal only emits, if the user selects ONE entry.
 
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.
