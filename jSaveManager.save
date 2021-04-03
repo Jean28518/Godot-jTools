@@ -4,7 +4,7 @@ fullscreen=false
 shadows=true
 antiAliasing=2
 mainVolume=1.0
-musicVolume=1.0
+musicVolume=0.5
 gameVolume=1.0
 
 [Main]

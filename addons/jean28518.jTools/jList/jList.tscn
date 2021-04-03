@@ -35,22 +35,20 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-margin_right = 816.0
+margin_right = 915.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="Add" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 820.0
-margin_right = 920.0
+margin_left = 919.0
+margin_right = 956.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Add"
 
 [node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 924.0
+margin_left = 960.0
 margin_right = 1024.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Remove"
 
 [node name="Rename" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -58,7 +56,6 @@ visible = false
 margin_left = 612.0
 margin_right = 712.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Rename"
 
 [node name="Duplicate" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -66,7 +63,6 @@ visible = false
 margin_left = 716.0
 margin_right = 816.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Duplicate"
 
 [node name="Copy" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -74,7 +70,6 @@ visible = false
 margin_left = 820.0
 margin_right = 920.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Copy"
 
 [node name="Paste" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -82,7 +77,6 @@ visible = false
 margin_left = 924.0
 margin_right = 1024.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Paste"
 
 [node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -90,7 +84,6 @@ visible = false
 margin_left = 924.0
 margin_right = 1024.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
 text = "Save"
 
 [node name="PopupDialog" type="PopupDialog" parent="."]

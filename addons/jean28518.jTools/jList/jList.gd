@@ -21,6 +21,15 @@ export (bool) var enable_copy_button = false
 export (bool) var enable_paste_button = false 
 export (bool) var enable_save_button = false 
 
+export (String) var add_button_text = "Add"
+export (String) var remove_button_text = "Remove"
+export (String) var rename_button_text = "Rename"
+export (String) var duplicate_button_text = "Duplicate"
+export (String) var copy_button_text = "Copy"
+export (String) var paste_button_text = "Paste"
+export (String) var save_button_text = "Save"
+
+
 export (bool) var update setget update_visible_buttons
 
 func get_data():
@@ -121,6 +130,15 @@ func update_visible_buttons(newvar):
 	$VBoxContainer/HBoxContainer/Copy.visible = enable_copy_button
 	$VBoxContainer/HBoxContainer/Paste.visible = enable_paste_button
 	$VBoxContainer/HBoxContainer/Save.visible = enable_save_button
+	
+	$VBoxContainer/HBoxContainer/Add.text = TranslationServer.translate(add_button_text)
+	$VBoxContainer/HBoxContainer/Remove.text = TranslationServer.translate(remove_button_text)
+	$VBoxContainer/HBoxContainer/Rename.text = TranslationServer.translate(rename_button_text)
+	$VBoxContainer/HBoxContainer/Duplicate.text = TranslationServer.translate(duplicate_button_text)
+	$VBoxContainer/HBoxContainer/Copy.text = TranslationServer.translate(copy_button_text)
+	$VBoxContainer/HBoxContainer/Paste.text = TranslationServer.translate(paste_button_text)
+	$VBoxContainer/HBoxContainer/Save.text = TranslationServer.translate(save_button_text)
+	
 	update = false
 
 
