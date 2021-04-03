@@ -1,6 +1,8 @@
 tool
 extends EditorPlugin
 
+var jConfig = preload("res://addons/jean28518.jTools/jConfig.gd")
+
 func _enter_tree():
 	add_autoload_singleton("jConfig", "res://addons/jean28518.jTools/jConfig.gd")
 	if jConfig.enable_jEssentials:
