@@ -7,12 +7,12 @@ It is high customizable and offers a simple, but efficient basis.
 You can use this in your own project, even a commercial one.
 
 ## Features
-- Simple Save Manager
-- Basic Settings Manager - Highly customizable and easy to use
-- Table - Adds powerful tables to Godot
-- jList: Adds powerful lists.
-- Simple Audio Manager for playing music or game sounds
-- Other useful methods
+- **jSaveManager**: Stores values easiely
+- **jTable**: Advanced Tables for Godot. For your needs
+- **jList**: Adds powerful and customizable lists.
+- **jAudioManager**: Play music and sounds with a single line of code. Everywhere.
+- **jSettings**: Basic Settings Manager
+- **jTools**: Simple but efficient functions
 
 ## How to use jTools in your own project
 Just copy in the addons folder in to your Godot Project.
@@ -28,11 +28,6 @@ If you don't want to use this audio bus layout, set `jAudioManagerBus` in `JAudi
 
 ## Modules
 
-### jTools
-It's a collection of simple methods, which make programming a lot cleaner and easier.
-
-- **jTools.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jTools.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
-
 ### jSaveManager
 With it you can very easy save values of your game persistently.
 In code it can be accessed very easy over `jSaveManager`.
@@ -46,14 +41,10 @@ If this value doesn't exist, null is returned.
 
 #### Example
 ```
-    jSaveManager.save_value("level", 3)
+jSaveManager.save_value("level", 3)
 
-    var level = jSaveManager.get_value("level")
+var level = jSaveManager.get_value("level")
 ```
-### jSettings
-Basic Settings Window. When you call the function `jSettings.open_window()`. The Settings window opens.
-
-You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
 
 ### jTable
 Powerful table for godot. Usable ingame but also for editor plugins.
@@ -129,7 +120,6 @@ Signals are just emitted, if the user itself does something. While calling funct
 - **user_pasted_entries(source_entry_names : Array, source_jList_id : String, pasted_entry_names : Array)** (arrays of strings)
 - **user_pressed_save(data : Array)** (array of strings, data is equal to entry_names)
 
-
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.
 
@@ -154,6 +144,16 @@ Play easy sounds by calling just one function from anywhere. Music even keeps pl
 
     jAudioManager.play_game_sound("res://addons/jean28518.jTools/example/SampleSound.ogg")
 ```
+
+### jSettings
+Basic Settings Window. When you call the function `jSettings.open_window()`. The Settings window opens.
+
+You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
+
+### jTools
+It's a collection of simple methods, which make programming a lot cleaner and easier.
+
+- **jTools.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jTools.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
 
 #### Attention
 At game start jAudioManager loads in it's own audio bus layout located in

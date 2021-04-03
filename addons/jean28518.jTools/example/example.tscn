@@ -19,6 +19,7 @@ scale = Vector2( 0.535175, 0.535175 )
 texture = ExtResource( 3 )
 
 [node name="Page2" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -81,7 +82,6 @@ enable_paste_button = true
 enable_save_button = true
 
 [node name="Table" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -158,7 +158,6 @@ __meta__ = {
 }
 
 [node name="SaveLoadExample" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 margin_left = 17.123
 margin_top = 231.147
@@ -216,7 +215,6 @@ __meta__ = {
 }
 
 [node name="PlayDelayedSound" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 margin_left = 594.0
 margin_top = 231.0
