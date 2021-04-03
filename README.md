@@ -10,6 +10,7 @@ You can use this in your own project, even a commercial one.
 - Simple Save Manager
 - Basic Settings Manager - Highly customizable and easy to use
 - Table - Adds powerful tables to Godot
+- jList: Adds powerful lists.
 - Simple Audio Manager for playing music or game sounds
 - Other useful methods
 
@@ -84,6 +85,50 @@ var dataTable = {
     "postalCode": [ 83633.0, 82205.0, 24560.0 ]
 }
 ```
+
+### jList
+With it you can integrate an editable list very easily. jList is highly integrateable with your code. It throws signals at every user interaction.
+
+#### Setup
+Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. See the example.tscn in Page2 how the jLists where Setup.
+
+#### Customization
+- **ID**: You can give the jList a unique name, if you want. Over it you can access this jList via `jListManager.get_jList(id : String)` from everywhere in the code.
+- **Entry Duplicate Text**: If only unique entries are allowed in this list, this string will be appended after the actual text.
+- **Only Unique Entries allowed**: If this one is activated: If an added entry has the same text as an other one in this jList, it will be made unique by appending e.g. `_duplicate` to the new entry
+- **Update**: If you check this one, the configuration of the Button Configuration will be updated
+- **Enable * Button**: Self explainig. Every Button at jList can be activated/deactivated.
+    - *(When Add Button is enabled, the user will be able to add by new entries by pressing enter in the edit line)*
+
+#### Access in Code
+##### jListManager
+Can be accessed from everywhere.
+- **jListManager.get_jList(id : String)**: With it a jList can be accessed.
+- **jListManager.get_buffer()**: Get the current buffer. It's an array of strings. In it these entries are stored, which the player copied. Theres only one global buffer for all jLists.
+- **jListManager.get_buffer_source_jList_id()**: Retrieves the id of the jList, from which the current entries in the buffer come.
+- **jListManager.clear_buffer()**: Clears the global buffer.
+
+##### jList Functions
+- **get_data**: Retrieves all current entries in a single string array.
+- **set_data(entry_names : Array)** Opposite of get_data(). Clears jList before.
+- **clear()**: Clears the whole list. Sets the Line Edit Text to `""`.
+- **add_entry(entry_name : String)**: Adds an entry to the list. If enty_name already exists in this list, it will be made unique by appending e.g. "_duplicate". Returns the resulting (unique) entry_name.
+- **remove_entry(entry_name : String):** Self explaining. Does nothing if entry_name wasn't found in this list.
+- **get_size()** Returns the current size of the list.
+
+##### jList Signals
+With these signals you can integrate jList very easy to your current enviorment.
+
+Signals are just emitted, if the user itself does something. While calling functions via code no signals are emitted.
+
+- **user_added_entry(entry_name : String)**
+- **user_removed_entries(entry_names : Array)** (array of strings)
+- **user_renamed_entry(old_name : String, new_name : String)**
+- **user_duplicated_entries(source_entry_names : Array, duplicated_entry_names : Array)** (arrays of strings)
+- **user_copied_entries(entry_names : String)**
+- **user_pasted_entries(source_entry_names : Array, source_jList_id : String, pasted_entry_names : Array)** (arrays of strings)
+- **user_pressed_save(data : Array)** (array of strings, data is equal to entry_names)
+
 
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.

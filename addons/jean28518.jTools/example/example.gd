@@ -1,13 +1,14 @@
 extends Control
 
 func _ready():
-	## Load Table Data
+	## Load Table data
 	var tableData = jSaveManager.get_value("tableSettings") # Load Table from File.
 	if tableData != null:
 		$Table/jTable.set_data(tableData)
 		
-#		print("Loaded Table Data: " + String(tableData))
-		
+	## Load jList data
+	$Page2/jListExample2/jList.set_data(jSaveManager.get_value("jListExample2", []))
+	
 	
 	## Play Music: (The music also plays while level loading ;)
 	jAudioManager.play_music("res://addons/jean28518.jTools/example/SampleMusic.ogg")
@@ -69,3 +70,23 @@ func _on_PlaySound_pressed():
 func _on_PlayDelayedSound_pressed():
 	jTools.call_delayed($PlayDelayedSound/seconds.value, jAudioManager, "play_game_sound", ["res://addons/jean28518.jTools/example/SampleSound.ogg"])
 
+
+
+func _on_Page1_pressed():
+	$Table.show()
+	$SaveLoadExample.show()
+	$PlayDelayedSound.show()
+	$Page2.hide()
+
+
+
+func _on_Page2_pressed():
+	$Table.hide()
+	$SaveLoadExample.hide()
+	$PlayDelayedSound.hide()
+	$Page2.show()
+	
+	
+func _on_jListExample2_user_pressed_save(data):
+	jSaveManager.save_value("jListExample2", data)
+	print("Saved jList Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")

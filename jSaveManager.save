@@ -19,3 +19,4 @@ tableSettings={
 "lastName": [ "Hoch", "Egger", "Schweitzer" ],
 "postalCode": [ 83633.0, 82205.0, 24560.0 ]
 }
+jListExample2=[ "List Item A", "List Item B", "List Item C" ]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/jean28518.jTools/example/example.gd" type="Script" id=1]
 [ext_resource path="res://addons/jean28518.jTools/jTable/jTable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/jean28518.jTools/Heading.png" type="Texture" id=3]
+[ext_resource path="res://addons/jean28518.jTools/jList/jList.tscn" type="PackedScene" id=4]
 
 [node name="Example" type="Control"]
 anchor_right = 1.0
@@ -12,7 +13,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Heading" type="Sprite" parent="."]
+position = Vector2( 265.112, 96.2125 )
+scale = Vector2( 0.535175, 0.535175 )
+texture = ExtResource( 3 )
+
+[node name="Page2" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jListExample1" type="ColorRect" parent="Page2"]
+anchor_left = 0.0107422
+anchor_top = 0.306667
+anchor_right = 0.990234
+anchor_bottom = 0.575
+color = Color( 0.14902, 0.172549, 0.231373, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Page2/jListExample1"]
+anchor_right = 1.0
+margin_top = 4.23785
+margin_bottom = 18.2379
+text = "jList Example 1"
+align = 1
+
+[node name="jList" parent="Page2/jListExample1" instance=ExtResource( 4 )]
+margin_left = 6.0
+margin_top = 26.0
+margin_right = -6.0
+margin_bottom = -6.0
+id = "MyTable1"
+enable_rename_button = true
+enable_duplicate_button = true
+enable_copy_button = true
+
+[node name="jListExample2" type="ColorRect" parent="Page2"]
+anchor_left = 0.0117188
+anchor_top = 0.595
+anchor_right = 0.539062
+anchor_bottom = 0.871667
+margin_top = -3.05176e-05
+color = Color( 0.14902, 0.172549, 0.231373, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Page2/jListExample2"]
+anchor_right = 1.0
+margin_top = 4.23785
+margin_bottom = 18.2379
+text = "jList Example 2"
+align = 1
+
+[node name="jList" parent="Page2/jListExample2" instance=ExtResource( 4 )]
+margin_left = 6.0
+margin_top = 26.0
+margin_right = -6.0
+margin_bottom = -6.0
+id = "MyTable2"
+enable_add_button = false
+enable_paste_button = true
+enable_save_button = true
+
 [node name="Table" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -32,6 +101,8 @@ margin_bottom = -10.0
 headings = [ "Gender", "First Name", "Last Name", "Street", "Housenumber", "Postal Code", "City" ]
 keys = [ "gender", "firstName", "lastName", "Street", "housenumber", "postalCode", "city" ]
 show_save_button = true
+show_clear_button = true
+_update_table = false
 
 [node name="Gender" type="OptionButton" parent="Table/jTable"]
 visible = false
@@ -86,43 +157,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlaySound" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -101.804
-margin_top = 21.1736
-margin_right = -20.8038
-margin_bottom = 41.1736
-text = "Play Sound"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Options" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -101.0
-margin_top = 50.0
-margin_right = -22.0
-margin_bottom = 70.0
-text = "Options"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Quit" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -101.0
-margin_top = 81.0
-margin_right = -22.0
-margin_bottom = 101.0
-text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="SaveLoadExample" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 margin_left = 17.123
 margin_top = 231.147
@@ -180,6 +216,7 @@ __meta__ = {
 }
 
 [node name="PlayDelayedSound" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 margin_left = 594.0
 margin_top = 231.0
@@ -219,19 +256,73 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Heading" type="Sprite" parent="."]
-position = Vector2( 265.112, 96.2125 )
-scale = Vector2( 0.535175, 0.535175 )
-texture = ExtResource( 3 )
+[node name="Pages" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 529.0
+margin_top = 21.7091
+margin_right = -124.0
+margin_bottom = 41.7091
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button" type="Button" parent="."]
-margin_right = 12.0
+[node name="Page1" type="Button" parent="Pages"]
+margin_left = 126.0
+margin_right = 180.0
 margin_bottom = 20.0
+text = "Page 1"
+
+[node name="Page2" type="Button" parent="Pages"]
+margin_left = 190.0
+margin_right = 244.0
+margin_bottom = 20.0
+text = "Page 2"
+
+[node name="PlaySound" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -101.804
+margin_top = 21.1736
+margin_right = -20.8038
+margin_bottom = 41.1736
+text = "Play Sound"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -101.0
+margin_top = 50.0
+margin_right = -22.0
+margin_bottom = 70.0
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -101.0
+margin_top = 81.0
+margin_right = -22.0
+margin_bottom = 101.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="user_pressed_save" from="Page2/jListExample2/jList" to="." method="_on_jListExample2_user_pressed_save"]
 [connection signal="saved_pressed" from="Table/jTable" to="." method="_on_jTable_saved_pressed"]
-[connection signal="pressed" from="PlaySound" to="." method="_on_PlaySound_pressed"]
-[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Save" to="." method="_on_SaveSingleValue_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Clear" to="." method="_on_ClearExampleValue_pressed"]
 [connection signal="pressed" from="PlayDelayedSound/PlayDelayedSound" to="." method="_on_PlayDelayedSound_pressed"]
+[connection signal="pressed" from="Pages/Page1" to="." method="_on_Page1_pressed"]
+[connection signal="pressed" from="Pages/Page2" to="." method="_on_Page2_pressed"]
+[connection signal="pressed" from="PlaySound" to="." method="_on_PlaySound_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
