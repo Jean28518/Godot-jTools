@@ -7,12 +7,12 @@ It is high customizable and offers a simple, but efficient basis.
 You can use this in your own project, even a commercial one.
 
 ## Features
-- **jSaveManager**: Stores values easiely
+- **jSaveManager**: Stores values easily
 - **jTable**: Advanced Tables for Godot. For your needs
 - **jList**: Adds powerful and customizable lists.
 - **jAudioManager**: Play music and sounds with a single line of code. Everywhere.
 - **jSettings**: Basic Settings Manager
-- **jTools**: Simple but efficient functions
+- **jEssentials**: Simple but efficient functions
 
 ## How to use jTools in your own project
 Just copy in the addons folder in to your Godot Project.
@@ -24,9 +24,10 @@ For quick start just look at the provided example.tscn and example.gd how to use
 *At game start jAudioManager loads in it's own audio bus layout located in
 `res://addons/jean28518.jTools/jAudioManager/jAudoManager_bus_layout.tres`.
 You are welcome to expand this layout for your own needs.
-If you don't want to use this audio bus layout, set `jAudioManagerBus` in `JAudioManager.gd:3` to `false`.*
+If you don't want to use this audio bus layout, set `enable_jAudioManager_bus` in `jConfig.gd:15` to `false`.*
 
 ## Modules
+If you don't want to use all components of jTools you can deactivate some modules by editing `res://addons/jean28518.jTools/jConfig.gd`.
 
 ### jSaveManager
 With it you can very easy save values of your game persistently.
@@ -58,6 +59,8 @@ Powerful table for godot. Usable ingame but also for editor plugins.
 - In the end you have to connect the signal "saved_pressed" to a script of you. With that data you can do everything.
 
 If you have problems at any time, check out the `example.tscn` with `example.gd`.
+
+Is some (custom) node type for the jTable missing? No problem! Just edit `res://addons/jean28518.jTools/jConfig.gd` in the section "jTable".
 
 #### Data Structure
 You can get the current data of the table by calling `get_data()`. With `set_data(tableData : Dictionary)` you can load data to the table.
@@ -150,18 +153,10 @@ Basic Settings Window. When you call the function `jSettings.open_window()`. The
 
 You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
 
-### jTools
-It's a collection of simple methods, which make programming a lot cleaner and easier.
+### jEssentials
+It's a collection of simple methods, which make developing a lot cleaner and easier.
 
-- **jTools.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jTools.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
-
-#### Attention
-At game start jAudioManager loads in it's own audio bus layout located in
-`res://addons/jean28518.jTools/jAudioManager/jAudoManager_bus_layout.tres`.
-You are welcome to expand this layout for your own needs.
-If you don't want to use this audio bus layout, set `jAudioManagerBus` in `JAudioManager.gd:3` to `false`.
-
-
+- **jEssentials.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jEssentials.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
 
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools

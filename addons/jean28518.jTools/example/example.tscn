@@ -101,8 +101,6 @@ margin_bottom = -10.0
 headings = [ "Gender", "First Name", "Last Name", "Street", "Housenumber", "Postal Code", "City" ]
 keys = [ "gender", "firstName", "lastName", "Street", "housenumber", "postalCode", "city" ]
 show_save_button = true
-show_clear_button = true
-_update_table = false
 
 [node name="Gender" type="OptionButton" parent="Table/jTable"]
 visible = false
@@ -313,7 +311,6 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="user_pressed_save" from="Page2/jListExample2/jList" to="." method="_on_jListExample2_user_pressed_save"]
 [connection signal="saved_pressed" from="Table/jTable" to="." method="_on_jTable_saved_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Save" to="." method="_on_SaveSingleValue_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Load" to="." method="_on_Load_pressed"]

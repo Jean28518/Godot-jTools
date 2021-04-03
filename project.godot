@@ -21,7 +21,8 @@ config/icon="res://addons/jean28518.jTools/Icon.png"
 
 [autoload]
 
-jTools="*res://addons/jean28518.jTools/jTools.gd"
+jEssentials="*res://addons/jean28518.jTools/jEssentials/jEssentials.gd"
+jConfig="*res://addons/jean28518.jTools/jConfig.gd"
 jSaveManager="*res://addons/jean28518.jTools/jSaveManager/jSaveManager.gd"
 jAudioManager="*res://addons/jean28518.jTools/jAudioManager/JAudioManager.gd"
 jSettings="*res://addons/jean28518.jTools/jSettings/JSettings.tscn"

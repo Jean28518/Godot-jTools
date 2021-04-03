@@ -1,8 +1,6 @@
 tool
 extends Node
 
-
-
 func call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):
 	delayed_call_table.delay.append(delay)
 	delayed_call_table.object.append(object)
@@ -33,5 +31,3 @@ func handle_delayed_calls(delta):
 			i -= 1 ## Because we remove here an entry
 		i += 1
 
-
-			

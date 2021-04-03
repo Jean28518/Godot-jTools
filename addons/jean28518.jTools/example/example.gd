@@ -27,23 +27,16 @@ func _on_jTable_saved_pressed(tableData):
 	# 	"postalCode": [ 83633.0, 82205.0, 24560.0 ]
 	# }
 
-	
-	
-	
 	jSaveManager.save_value("tableSettings", tableData)
 	
 	print("Saved Table Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")
-#	print("Loaded Table Data: " + String(tableData))
-
 
 ## Option Button ###############################################################
-
 # You just need to call this function jSettings.openSettings(), 
 # and the settings window opens. Completely irrelevant from where you call this.
 
 func _on_Options_pressed():
 	jSettings.open_window()
-
 
 
 ## Easy Save/Load Example ######################################################
@@ -66,27 +59,30 @@ func _on_Quit_pressed():
 func _on_PlaySound_pressed():
 	jAudioManager.play_game_sound("res://addons/jean28518.jTools/example/SampleSound.ogg")
 
-
 func _on_PlayDelayedSound_pressed():
-	jTools.call_delayed($PlayDelayedSound/seconds.value, jAudioManager, "play_game_sound", ["res://addons/jean28518.jTools/example/SampleSound.ogg"])
+	jEssentials.call_delayed($PlayDelayedSound/seconds.value, jAudioManager, "play_game_sound", ["res://addons/jean28518.jTools/example/SampleSound.ogg"])
 
 
+## jList #######################################################################
+#func _ready():
+#	$Page2/jListExample2/jList.set_data(jSaveManager.get_value("jListExample2", []))
 
+# If the Save Button is enabled, jTable needs at least one connection to the save_pressed signal!
+# You have to care about yourself for saving. But you can do this very easy with jSaveManager:
+func _on_jListExample2_user_pressed_save(data):
+	jSaveManager.save_value("jListExample2", data)
+	print("Saved jList Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")
+
+
+## (Pages) #####################################################################
 func _on_Page1_pressed():
 	$Table.show()
 	$SaveLoadExample.show()
 	$PlayDelayedSound.show()
 	$Page2.hide()
 
-
-
 func _on_Page2_pressed():
 	$Table.hide()
 	$SaveLoadExample.hide()
 	$PlayDelayedSound.hide()
 	$Page2.show()
-	
-	
-func _on_jListExample2_user_pressed_save(data):
-	jSaveManager.save_value("jListExample2", data)
-	print("Saved jList Data successfully. \nHint: For saving you have to care yourself. See example.gd for required code.")
