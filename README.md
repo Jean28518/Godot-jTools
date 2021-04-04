@@ -83,7 +83,7 @@ var dataTable = {
 ### jList
 With it you can integrate an editable list very easily. jList is highly integrateable with your code. It throws signals at every user interaction.
 
-While every user action jList checks its consistency. Also it can handle wrong user actions (e.g. trying to add a entry called `""` is not allowed) and doesn't send signals for these. 
+While every user action jList checks its consistency. Also it can handle wrong user actions (e.g. trying to add a entry called `""` is not allowed) and doesn't send signals for these.
 
 #### Setup
 Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. See the example.tscn in Page2 how the jLists where Setup.
@@ -129,6 +129,8 @@ Signals are just emitted, if the user itself does something. While calling funct
 
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.
+
+If you want you could define specific game and music bus ids in the jConfig.gd file.
 
 #### How to use
 - **play_music(soundPath : String, loop : bool = true, volume_db : float = 0.0)** Plays music from a given path. By default it is looped.

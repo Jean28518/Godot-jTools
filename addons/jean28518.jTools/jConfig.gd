@@ -15,6 +15,11 @@ const enable_jEssentials = true
 # jAudioManager will also work without it's own bus system.
 const enable_jAudioManager_bus = true 
 
+# Optional, you could define a the bus ids for the game and music bus, which 
+# jAudioManager should use
+const game_bus_id = 1
+const music_bus_id = 2
+
 ## jTable ######################################################################
 # Here you can add (custom) nodes which should be supported by the jTable.
 
