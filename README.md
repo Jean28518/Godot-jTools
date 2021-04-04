@@ -155,14 +155,20 @@ If you want you could define specific game and music bus ids in the jConfig.gd f
 ```
 
 ### jSettings
-Basic Settings Window. When you call the function `jSettings.open_window()`. The Settings window opens.
+*Currently unfortunately jSettings doesn't offer the comfort you have for example in jList. You can see jSettings as a good template/starting point.*
 
-You can easily add settings. Just add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
+When you call the function `jSettings.open_window()`. The Settings window opens. Everywhere. The game won't be paused. But the option window also can work while the game is paused.
+
+To add a setting, add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
+
+If you don't need some setting just hide some entries in the jSettings.tscn.
 
 ### jEssentials
 It's a collection of simple methods, which make developing a lot cleaner and easier.
 
-- **jEssentials.call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):** With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jEssentials.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
+- **jEssentials.call_delayed(delay : float, object : Object, method : String, arg_array : Array = [])**: With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jEssentials.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
+
+- **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
 
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools
