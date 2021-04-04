@@ -83,6 +83,8 @@ var dataTable = {
 ### jList
 With it you can integrate an editable list very easily. jList is highly integrateable with your code. It throws signals at every user interaction.
 
+While every user action jList checks its consistency. Also it can handle wrong user actions (e.g. trying to add a entry called `""` is not allowed) and doesn't send signals for these. 
+
 #### Setup
 Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. See the example.tscn in Page2 how the jLists where Setup.
 
@@ -109,6 +111,7 @@ Can be accessed from everywhere.
 - **add_entry(entry_name : String)**: Adds an entry to the list. If enty_name already exists in this list, it will be made unique by appending e.g. "_duplicate". Returns the resulting (unique) entry_name.
 - **remove_entry(entry_name : String):** Self explaining. Does nothing if entry_name wasn't found in this list.
 - **get_size()** Returns the current size of the list.
+- **revoke_last_user_action(message : String = "")**: You can revoke the last user action. So if the user does something illegal for you, you can revoke this, and display optionally an popup Message. This function does not emit any signals.
 
 ##### jList Signals
 With these signals you can integrate jList very easy to your current enviorment.

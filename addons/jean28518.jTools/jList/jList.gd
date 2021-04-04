@@ -53,7 +53,6 @@ func add_entry(entry_name : String):
 	if only_unique_entries_allowed:
 		entry_name = get_unique_entry_name(entry_name)
 	item_list.add_item(entry_name)
-	emit_signal("user_added_entry", entry_name)
 	return entry_name
 
 func remove_entry(entry_name : String):
@@ -162,9 +161,9 @@ func _on_Add_pressed():
 	if $VBoxContainer/HBoxContainer/LineEdit.text == "":
 		return
 	undo_buffer = get_data()
-	add_entry($VBoxContainer/HBoxContainer/LineEdit.text)
+	var entry_name = add_entry($VBoxContainer/HBoxContainer/LineEdit.text)
 	$VBoxContainer/HBoxContainer/LineEdit.text = ""
-	emit_signal("user_added_entry", $VBoxContainer/HBoxContainer/LineEdit.text)
+	emit_signal("user_added_entry", entry_name)
 
 func _on_Remove_pressed():
 	if item_list.get_selected_items().size() == 0:
