@@ -12,6 +12,13 @@ func find_files_recursively(directory_path : String, file_extension : String):
 	_find_files_recursively_helper(directory_path, found_files, file_extension)
 	return found_files["Array"]
 
+func remove_duplicates(array : Array):
+	var return_value = []
+	for item in array:
+		if not return_value.has(item):
+			return_value.append(item)
+	return return_value
+
 ## Internal Functions ##########################################################
 
 func _ready():

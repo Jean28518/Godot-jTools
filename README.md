@@ -157,7 +157,19 @@ If you want you could define specific game and music bus ids in the jConfig.gd f
 ### jSettings
 *Currently unfortunately jSettings doesn't offer the comfort you have for example in jList. You can see jSettings as a good template/starting point.*
 
+#### Features:
+- Automatic language handling - Just load in the translation files. Rest is done by jSettings.
+- Integration with jAudioManager
+- AntiAliasing Setting
+- Fullscreen Setting
+- Integration with jSaveManager
+- ...
+
+#### How to use
+
 When you call the function `jSettings.open_window()`. The Settings window opens. Everywhere. The game won't be paused. But the option window also can work while the game is paused.
+
+#### Customization
 
 To add a setting, add some nodes to the GridContainer in `JSettings.tscn`. Then add some code in the `JSettings.gd` at `_ready()`,  `apply_saved_settings()` `update_settings_window()`. Also add your own setter/getter functions in the end of the script. Connect the new nodes in the grid per signals with your set/get functions, if as possible.
 
