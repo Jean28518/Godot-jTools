@@ -47,6 +47,12 @@ jSaveManager.save_value("level", 3)
 var level = jSaveManager.get_value("level")
 ```
 
+#### jSaveModule:
+If you need a local jSaveManager e.g. for a specific level, you can insert `res://addons/jean28518.jTools/jSaveManager/jSaveModule.tscn` into your scene. It supports the same functions as jSaveManager. 
+
+Additionally you can change the path of the save file with `set_save_path(save_path : String)`. That works even ingame.
+You can also define the path of the save file in the inspector. The file extension is irrelevant. But make sure to use one. Otherwise some OS could have difficulties with it. Example of a save_path: `res://Levels/Level1/Level1.save`
+
 ### jTable
 Powerful table for godot. Usable ingame but also for editor plugins.
 
@@ -181,6 +187,8 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 - **jEssentials.call_delayed(delay : float, object : Object, method : String, arg_array : Array = [])**: With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jEssentials.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
 
 - **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
+
+- **jEssentials.remove_duplicates(array : Array)**: Removes duplicates out of the array. Returns the new array without duplicates.
 
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools

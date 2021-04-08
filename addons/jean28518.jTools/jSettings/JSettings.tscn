@@ -49,6 +49,7 @@ margin_left = -319.5
 margin_top = -206.0
 margin_right = 319.5
 margin_bottom = 206.0
+follow_focus = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -71,10 +72,10 @@ size_flags_horizontal = 3
 text = "Fullscreen"
 
 [node name="Fullscreen" type="CheckBox" parent="ScrollContainer/GridContainer"]
-margin_left = 489.0
-margin_right = 639.0
+margin_left = 552.0
+margin_right = 576.0
 margin_bottom = 24.0
-align = 1
+size_flags_horizontal = 4
 
 [node name="Label2" type="Label" parent="ScrollContainer/GridContainer"]
 margin_top = 33.0
@@ -84,43 +85,42 @@ size_flags_horizontal = 3
 text = "Shadows"
 
 [node name="Shadows" type="CheckBox" parent="ScrollContainer/GridContainer"]
-margin_left = 489.0
+margin_left = 552.0
 margin_top = 28.0
-margin_right = 639.0
+margin_right = 576.0
 margin_bottom = 52.0
-align = 1
+size_flags_horizontal = 4
 
-[node name="Label7" type="Label" parent="ScrollContainer/GridContainer"]
+[node name="Label6" type="Label" parent="ScrollContainer/GridContainer"]
 margin_top = 59.0
 margin_right = 485.0
 margin_bottom = 73.0
-size_flags_horizontal = 3
-text = "Language"
-
-[node name="Language" type="OptionButton" parent="ScrollContainer/GridContainer"]
-margin_left = 489.0
-margin_top = 56.0
-margin_right = 639.0
-margin_bottom = 76.0
-align = 1
-selected = 0
-
-[node name="Label6" type="Label" parent="ScrollContainer/GridContainer"]
-margin_top = 83.0
-margin_right = 485.0
-margin_bottom = 97.0
 size_flags_horizontal = 3
 text = "Anti Aliasing"
 
 [node name="AntiAliasing" type="OptionButton" parent="ScrollContainer/GridContainer"]
 margin_left = 489.0
-margin_top = 80.0
+margin_top = 56.0
 margin_right = 639.0
-margin_bottom = 100.0
+margin_bottom = 76.0
 text = "Disabled"
 align = 1
 items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
 selected = 0
+
+[node name="Label7" type="Label" parent="ScrollContainer/GridContainer"]
+margin_top = 83.0
+margin_right = 485.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+text = "Language"
+
+[node name="Language" type="OptionButton" parent="ScrollContainer/GridContainer"]
+margin_left = 489.0
+margin_top = 80.0
+margin_right = 639.0
+margin_bottom = 100.0
+align = 1
 
 [node name="Label3" type="Label" parent="ScrollContainer/GridContainer"]
 margin_top = 105.0
@@ -184,9 +184,9 @@ __meta__ = {
 [connection signal="pressed" from="ColorRect/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="ScrollContainer/GridContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
 [connection signal="pressed" from="ScrollContainer/GridContainer/Shadows" to="." method="_on_Shadows_pressed"]
-[connection signal="item_selected" from="ScrollContainer/GridContainer/Language" to="." method="_on_Language_item_selected"]
 [connection signal="item_selected" from="ScrollContainer/GridContainer/AntiAliasing" to="." method="set_anti_aliasing"]
 [connection signal="item_selected" from="ScrollContainer/GridContainer/AntiAliasing" to="." method="save_and_apply_current_settings"]
+[connection signal="item_selected" from="ScrollContainer/GridContainer/Language" to="." method="_on_Language_item_selected"]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/MainVolume" to="." method="set_main_volume"]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/GameVolume" to="." method="set_game_volume"]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/MusicVolume" to="." method="set_music_volume"]
