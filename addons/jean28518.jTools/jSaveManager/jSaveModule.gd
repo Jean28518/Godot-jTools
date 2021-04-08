@@ -7,6 +7,7 @@ export (String) var save_path = ""
 
 func set_save_path(save_path : String):
 	self.save_path = save_path
+	_load_current_config()
 
 func save_value(key : String, value):
 	if _config == null:
