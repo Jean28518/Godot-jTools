@@ -14,6 +14,13 @@ You can use this in your own project, even a commercial one.
 - **jSettings**: Basic Settings Manager
 - **jEssentials**: Simple but efficient functions
 
+## Screenshots
+| Examples | jTools in Action |
+| ------- | --------- |
+| ![screenshot_1](screenshots/screenshot_1.png) | ![example_3](screenshots/example_3.png) |
+| ![screenshot_2](screenshots/screenshot_2.png) | ![example_2](screenshots/example_2.png) |
+| ![screenshot_3](screenshots/screenshot_3.png) | ![example_1](screenshots/example_1.png) |
+
 ## How to use jTools in your own project
 Just copy in the addons folder in to your Godot Project.
 Then head to the projectsettings -> addons, and activate jTools!
@@ -48,7 +55,7 @@ var level = jSaveManager.get_value("level")
 ```
 
 #### jSaveModule:
-If you need a local jSaveManager e.g. for a specific level, you can insert `res://addons/jean28518.jTools/jSaveManager/jSaveModule.tscn` into your scene. It supports the same functions as jSaveManager. 
+If you need a local jSaveManager e.g. for a specific level, you can insert `res://addons/jean28518.jTools/jSaveManager/jSaveModule.tscn` into your scene. It supports the same functions as jSaveManager.
 
 Additionally you can change the path of the save file with `set_save_path(save_path : String)`. That works even ingame.
 You can also define the path of the save file in the inspector. The file extension is irrelevant. But make sure to use one. Otherwise some OS could have difficulties with it. Example of a save_path: `res://Levels/Level1/Level1.save`
