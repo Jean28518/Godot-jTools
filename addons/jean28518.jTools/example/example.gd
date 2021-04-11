@@ -41,15 +41,15 @@ func _on_Options_pressed():
 
 ## Easy Save/Load Example ######################################################
 func _on_SaveSingleValue_pressed():
-	jSaveManager.save_value("exampleValue", $ColorRect/LineEdit.text)
+	jSaveManager.save_value("exampleValue", $SaveLoadExample/LineEdit.text)
 	
 
 func _on_Load_pressed():
 	if jSaveManager.get_value("exampleValue") != null:
-		$ColorRect/LineEdit.text = jSaveManager.get_value("exampleValue")
+		$SaveLoadExample/LineEdit.text = jSaveManager.get_value("exampleValue")
 
 func _on_ClearExampleValue_pressed():
-	$ColorRect/LineEdit.text = ""
+	$SaveLoadExample/LineEdit.text = ""
 
 
 func _on_Quit_pressed():
