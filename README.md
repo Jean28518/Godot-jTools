@@ -121,8 +121,10 @@ Can be accessed from everywhere.
 - **get_data**: Retrieves all current entries in a single string array.
 - **set_data(entry_names : Array)** Opposite of get_data(). Clears jList before.
 - **clear()**: Clears the whole list. Sets the Line Edit Text to `""`.
-- **add_entry(entry_name : String)**: Adds an entry to the list. If enty_name already exists in this list, it will be made unique by appending e.g. "_duplicate". Returns the resulting (unique) entry_name.
+- **add_entry(entry_name : String)**: Adds an entry to the list. If enty_name already exists in this list, it will be made unique by appending e.g. `_duplicate`. Returns the resulting (unique) entry_name.
 - **remove_entry(entry_name : String):** Self explaining. Does nothing if entry_name wasn't found in this list.
+- **has_entry(entry_name : String):** Self explaining. Returns a bool.
+- **select_entry(entry_name : String):** Selects an entry. The users sees the selected entry in the end.
 - **get_size()** Returns the current size of the list.
 - **revoke_last_user_action(message : String = "")**: You can revoke the last user action. So if the user does something illegal for you, you can revoke this, and display optionally an popup Message. This function does not emit any signals.
 
