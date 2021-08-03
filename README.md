@@ -47,6 +47,8 @@ It stores all saved data at `res://jSaveManager.save`. It can be changed in the 
 - **jSaveManager.get_value(key : String):** Gets the value which is stored under that key.
 If this value doesn't exist, null is returned.
 
+- **reload():** Reloads cache of jSaveManager. If you duplicate some values with other objects in it, this function could be usefully.
+
 #### Example
 ```
 jSaveManager.save_value("level", 3)
