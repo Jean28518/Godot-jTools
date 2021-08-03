@@ -26,6 +26,9 @@ func get_value(key,  default_value = null):
 		return _config.get_value("Main", key, default_value)
 	return default_value
 	
+func reload():
+	_load_current_config()
+	
 ## Internal Code ###############################################################
 var _config
 

@@ -312,6 +312,7 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="user_selected_entry" from="Page2/jListExample1/jList" to="." method="_on_jListExample1_user_selected_entry"]
 [connection signal="saved_pressed" from="Table/jTable" to="." method="_on_jTable_saved_pressed"]
 [connection signal="pressed" from="SaveLoadExample/Save" to="." method="_on_SaveSingleValue_pressed"]

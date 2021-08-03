@@ -24,3 +24,7 @@ func get_setting(key, default_value = null):
 	if config.has_section_key("Settings", key):
 		return config.get_value("Settings", key, default_value)
 	return default_value
+
+func reload():
+	config = ConfigFile.new()
+	load_response = config.load(save_path)
