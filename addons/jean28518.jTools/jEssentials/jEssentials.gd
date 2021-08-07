@@ -7,6 +7,9 @@ func call_delayed(delay : float, object : Object, method : String, arg_array : A
 	delayed_call_table.method.append(method)
 	delayed_call_table.arg_array.append(arg_array)
 
+func remove_all_pending_delayed_calls():
+	initialize_delayed_call_table
+
 func find_files_recursively(directory_path : String, file_extension : String):
 	var found_files = {"Array" : []}
 	_find_files_recursively_helper(directory_path, found_files, file_extension)
@@ -22,6 +25,9 @@ func remove_duplicates(array : Array):
 ## Internal Functions ##########################################################
 
 func _ready():
+	initialize_delayed_call_table()
+
+func initialize_delayed_call_table():
 	delayed_call_table = {"delay" : [], "object" : [], "method" : [], "arg_array" : [] }
 
 func _process(delta):

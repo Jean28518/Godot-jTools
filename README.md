@@ -197,6 +197,8 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 
 - **jEssentials.call_delayed(delay : float, object : Object, method : String, arg_array : Array = [])**: With this function you don't have to use Timers anymore. Just specify the delay in seconds, the object on which the given function should be accessed. In the end you have to create an array with the arguments of the function. Example: `jEssentials.call_delayed(1.5, jSaveManager, "save_value", ["level", 3])`
 
+- **jEssentials.remove_all_pending_delayed_calls()**: Removes all pending delayed calls. Useful, if the user quits the level.
+
 - **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
 
 - **jEssentials.remove_duplicates(array : Array)**: Removes duplicates out of the array. Returns the new array without duplicates.
