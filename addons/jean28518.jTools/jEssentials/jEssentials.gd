@@ -8,7 +8,7 @@ func call_delayed(delay : float, object : Object, method : String, arg_array : A
 	delayed_call_table.arg_array.append(arg_array)
 
 func remove_all_pending_delayed_calls():
-	initialize_delayed_call_table
+	initialize_delayed_call_table()
 
 func find_files_recursively(directory_path : String, file_extension : String):
 	var found_files = {"Array" : []}
