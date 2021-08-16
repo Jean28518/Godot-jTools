@@ -143,6 +143,7 @@ Signals are just emitted, if the user itself does something. While calling funct
 - **user_pasted_entries(source_entry_names : Array, source_jList_id : String, pasted_entry_names : Array)** (arrays of strings)
 - **user_pressed_save(data : Array)** (array of strings, data is equal to entry_names)
 - **user_selected_entry(entry_name : String)**: This signal only emits, if the user selects ONE entry.
+- **user_pressed_action(source_entry_names : Array)**: This signal emits, if the user selected one or more entries anc pressed the action button. At the list itself nothing changes. You can use this for your own custom action/function you want to implement. For example the function to open a list item(s).
 
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.
