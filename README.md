@@ -107,6 +107,7 @@ Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.
 - **ID**: You can give the jList a unique name, if you want. Over it you can access this jList via `jListManager.get_jList(id : String)` from everywhere in the code. Set it to `_random`, if a random id should be generated.
 - **Entry Duplicate Text**: If only unique entries are allowed in this list, this string will be appended after the actual text.
 - **Only Unique Entries allowed**: If this one is activated: If an added entry has the same text as an other one in this jList, it will be made unique by appending e.g. `_duplicate` to the new entry
+- **Multi Selection Allowed**: If this one is activated the user can select multiple Entries with Ctrl and/or Shift. If this is false, then user can only select one list item at the same time.
 - **Update**: If you check this one, the configuration of the Button Configuration will be updated
 - **Enable * Button**: Self explainig. Every Button at jList can be activated/deactivated.
     - *(When Add Button is enabled, the user will be able to add by new entries by pressing enter in the edit line)*
