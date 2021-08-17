@@ -26,6 +26,28 @@ func copy_folder_recursively(from : String, to : String):
 		to += "/"
 	_copy_folder_recursively_helper(from, to)
 
+func remove_folder_recursively(path: String):
+	var dir = Directory.new()
+	if not dir.dir_exists(path):
+		return
+	if not path.ends_with("/"):
+		path += "/"
+	if dir.open(path) != OK: return
+	dir.list_dir_begin()
+	while(true):
+		var file = dir.get_next()
+		if file == "": break
+		if file == ".": continue
+		if file == "..": continue
+		if dir.current_is_dir():
+			remove_folder_recursively(path + file + "/")
+		else:
+			var dir2 = Directory.new()
+			dir2.remove(path + file)
+	dir.list_dir_end()
+	dir.remove(path)
+
+
 func remove_duplicates(array : Array):
 	var return_value = []
 	for item in array:
@@ -43,6 +65,11 @@ func show_message(message : String, title : String = ""):
 	message_box.anchor_top = 0.5
 	message_box.anchor_bottom = 0.5
 	message_box.show()
+
+
+func does_path_exist(path : String):
+	var dir = Directory.new()
+	return dir.dir_exists(path) or dir.file_exists(path)
 
 ## Internal Functions ##########################################################
 

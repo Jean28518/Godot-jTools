@@ -108,6 +108,7 @@ Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.
 - **Entry Duplicate Text**: If only unique entries are allowed in this list, this string will be appended after the actual text.
 - **Only Unique Entries allowed**: If this one is activated: If an added entry has the same text as an other one in this jList, it will be made unique by appending e.g. `_duplicate` to the new entry
 - **Multi Selection Allowed**: If this one is activated the user can select multiple Entries with Ctrl and/or Shift. If this is false, then user can only select one list item at the same time.
+- **Custom Font Path**: If set to an appropriate path, the font settings will be overwritten.
 - **Update**: If you check this one, the configuration of the Button Configuration will be updated
 - **Enable * Button**: Self explainig. Every Button at jList can be activated/deactivated.
     - *(When Add Button is enabled, the user will be able to add by new entries by pressing enter in the edit line)*
@@ -205,9 +206,13 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 
 - **jEssentials.copy_folder_recursively(from : String, to : String)**: Copies whole folder with all content and subfolders to another location. Overwrites existing files.
 
+- **jEssentials.remove_folder_recursively(path: String)**: Removes all files and all subfolders.
+
 - **jEssentials.remove_duplicates(array : Array)**: Removes duplicates out of the array. Returns the new array without duplicates.
 
 - **jEssentials.show_message(message : String, title : String = "")**: Opens a popup dialog with given message and optional title.
+
+- **jEssentials.does_path_exist(path : String)**: Returns true if at the given path is a directory or a file.
 
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools
