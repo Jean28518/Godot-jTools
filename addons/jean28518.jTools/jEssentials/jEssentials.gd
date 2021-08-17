@@ -15,6 +15,17 @@ func find_files_recursively(directory_path : String, file_extension : String):
 	_find_files_recursively_helper(directory_path, found_files, file_extension)
 	return found_files["Array"]
 
+func copy_folder_recursively(from : String, to : String):
+	var dir = Directory.new()
+	dir.make_dir_recursive(to)
+	if not dir.dir_exists(from):
+		return
+	if not from.ends_with("/"):
+		from += "/"
+	if not to.ends_with("/"):
+		to += "/"
+	_copy_folder_recursively_helper(from, to)
+
 func remove_duplicates(array : Array):
 	var return_value = []
 	for item in array:
@@ -82,4 +93,23 @@ func _find_files_recursively_helper(directory_path,found_files,file_extension):
 				else:
 					exportString = directory_path +"/"+file
 				found_files["Array"].append(exportString)
+	dir.list_dir_end()
+
+func _copy_folder_recursively_helper(from, to):
+	var dir = Directory.new()
+	dir.make_dir_recursive(to)
+	if dir.open(from) != OK: return
+	dir.list_dir_begin()
+	while(true):
+		var file = dir.get_next()
+		if file == "": break
+		if file == ".": continue
+		if file == "..": continue
+		if dir.current_is_dir():
+			print(from + file + "/" + "     " + to + file + "/")
+			_copy_folder_recursively_helper(from + file + "/", to + file + "/")
+		else:
+			var dir2 = Directory.new()
+			print(from + file + "     " + to + file)
+			dir2.copy(from + file, to + file)
 	dir.list_dir_end()
