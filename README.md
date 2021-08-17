@@ -203,7 +203,7 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 
 - **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
 
-- **jEssentials.copy_folder_recursively(from : String, to : String)**: Copies whole folder with all content and subfolders to a new location.
+- **jEssentials.copy_folder_recursively(from : String, to : String)**: Copies whole folder with all content and subfolders to another location. Overwrites existing files.
 
 - **jEssentials.remove_duplicates(array : Array)**: Removes duplicates out of the array. Returns the new array without duplicates.
 
