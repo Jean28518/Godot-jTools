@@ -22,6 +22,17 @@ func remove_duplicates(array : Array):
 			return_value.append(item)
 	return return_value
 
+func show_message(message : String, title : String = ""):
+	var message_box = AcceptDialog.new()
+	message_box.dialog_text = message
+	message_box.window_title = title
+	get_tree().current_scene.add_child(message_box)
+	message_box.anchor_left = 0.4
+	message_box.anchor_right = 0.5
+	message_box.anchor_top = 0.5
+	message_box.anchor_bottom = 0.5
+	message_box.show()
+
 ## Internal Functions ##########################################################
 
 func _ready():

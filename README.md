@@ -144,7 +144,7 @@ Signals are just emitted, if the user itself does something. While calling funct
 - **user_pasted_entries(source_entry_names : Array, source_jList_id : String, pasted_entry_names : Array)** (arrays of strings)
 - **user_pressed_save(data : Array)** (array of strings, data is equal to entry_names)
 - **user_selected_entry(entry_name : String)**: This signal only emits, if the user selects ONE entry.
-- **user_pressed_action(source_entry_names : Array)**: This signal emits, if the user selected one or more entries anc pressed the action button. At the list itself nothing changes. You can use this for your own custom action/function you want to implement. For example the function to open a list item(s).
+- **user_pressed_action(source_entry_names : Array)**: This signal emits, if the user selected one or more entries anc pressed the action button. At the list itself nothing changes. You can use this for your own custom action/function you want to implement. For example the function to open a list item.
 
 ### jAudioManager
 Play easy sounds by calling just one function from anywhere. Music even keeps playing while switching to another scene.
@@ -204,6 +204,8 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 - **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
 
 - **jEssentials.remove_duplicates(array : Array)**: Removes duplicates out of the array. Returns the new array without duplicates.
+
+- **jEssentials.show_message(message : String, title : String = "")**: Opens a popup dialog with given message and optional title.
 
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools
