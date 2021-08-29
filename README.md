@@ -214,5 +214,9 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 
 - **jEssentials.does_path_exist(path : String)**: Returns true if at the given path is a directory or a file.
 
+- **jEssentials.crawl_directory_for(directory_path : String, file_extension : String)**: Searches the whole directory with all subdirectories files with given file extesnsion. Returns an array of strings with full paths of found files. Example: `var all_text_files = jEssentials.crawl_directory_for("/home/test", "txt")`
+
+- **jEssentials.get_subfolders_of(directory_path : String)**: Get direct subfolder names of given folder. Returns array of strings.
+
 ## Feedback? Found Bugs? Suggestions?:
 -> Open an issue at https://github.com/Jean28518/Godot-jTools

@@ -1,19 +1,23 @@
 tool
 extends Node
 
+
 func call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):
 	delayed_call_table.delay.append(delay)
 	delayed_call_table.object.append(object)
 	delayed_call_table.method.append(method)
 	delayed_call_table.arg_array.append(arg_array)
 
+
 func remove_all_pending_delayed_calls():
 	initialize_delayed_call_table()
+
 
 func find_files_recursively(directory_path : String, file_extension : String):
 	var found_files = {"Array" : []}
 	_find_files_recursively_helper(directory_path, found_files, file_extension)
 	return found_files["Array"]
+
 
 func copy_folder_recursively(from : String, to : String):
 	var dir = Directory.new()
@@ -25,6 +29,7 @@ func copy_folder_recursively(from : String, to : String):
 	if not to.ends_with("/"):
 		to += "/"
 	_copy_folder_recursively_helper(from, to)
+
 
 func remove_folder_recursively(path: String):
 	var dir = Directory.new()
@@ -55,6 +60,7 @@ func remove_duplicates(array : Array):
 			return_value.append(item)
 	return return_value
 
+
 func show_message(message : String, title : String = ""):
 	var message_box = AcceptDialog.new()
 	message_box.dialog_text = message
@@ -71,18 +77,45 @@ func does_path_exist(path : String):
 	var dir = Directory.new()
 	return dir.dir_exists(path) or dir.file_exists(path)
 
+
+func crawl_directory_for(directory_path : String,file_extension : String) -> Array: 
+	var dir = Directory.new()
+	var found_files = {"Array" : []}
+	crawl_directory_for_helper(directory_path, found_files, file_extension)
+	return found_files["Array"]
+	
+func get_subfolders_of(directory_path : String):
+	var dir = Directory.new()
+	if dir.open(directory_path) != OK: return
+	dir.list_dir_begin()
+	var folder_names = []
+	while(true):
+		var file = dir.get_next()
+		if file == "": break
+		if file.begins_with("."): continue
+		if dir.current_is_dir():
+			folder_names.append(file)
+	dir.list_dir_end()
+	return folder_names
+
+
 ## Internal Functions ##########################################################
+
 
 func _ready():
 	initialize_delayed_call_table()
 
+
 func initialize_delayed_call_table():
 	delayed_call_table = {"delay" : [], "object" : [], "method" : [], "arg_array" : [] }
+
 
 func _process(delta):
 	_handle_delayed_calls(delta)
 
+
 var delayed_call_table
+
 
 func _handle_delayed_calls(delta):
 	var i = 0
@@ -98,6 +131,7 @@ func _handle_delayed_calls(delta):
 			delayed_call_table.arg_array.remove(i)
 			i -= 1 ## Because we remove here an entry
 		i += 1
+
 
 func _find_files_recursively_helper(directory_path,found_files,file_extension):
 	var dir = Directory.new()
@@ -122,6 +156,7 @@ func _find_files_recursively_helper(directory_path,found_files,file_extension):
 				found_files["Array"].append(exportString)
 	dir.list_dir_end()
 
+
 func _copy_folder_recursively_helper(from, to):
 	var dir = Directory.new()
 	dir.make_dir_recursive(to)
@@ -139,4 +174,29 @@ func _copy_folder_recursively_helper(from, to):
 			var dir2 = Directory.new()
 			print(from + file + "     " + to + file)
 			dir2.copy(from + file, to + file)
+	dir.list_dir_end()
+
+
+func crawl_directory_for_helper(directory_path : String, found_files : Dictionary, file_extension : String):
+	var dir = Directory.new()
+	if dir.open(directory_path) != OK: 
+		return
+	dir.list_dir_begin()
+	while(true):
+		var file = dir.get_next()
+		if file == "": break
+		if file.begins_with("."): continue
+		if dir.current_is_dir():
+			if directory_path.ends_with("/"):
+				crawl_directory_for_helper(directory_path+file, found_files, file_extension)
+			else:
+				crawl_directory_for_helper(directory_path+"/"+file, found_files, file_extension)
+		else:
+			if file.get_extension() == file_extension:
+				var export_string 
+				if directory_path.ends_with("/"):
+					export_string = directory_path + file
+				else:
+					export_string = directory_path + "/" + file
+				found_files["Array"].append(export_string)
 	dir.list_dir_end()
