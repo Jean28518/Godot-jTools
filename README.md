@@ -57,7 +57,14 @@ var level = jSaveManager.get_value("level")
 ```
 
 #### jSaveModule:
-If you need a local jSaveManager e.g. for a specific level, you can insert `res://addons/jean28518.jTools/jSaveManager/jSaveModule.tscn` into your scene. It supports the same functions as jSaveManager.
+If you need a local jSaveManager e.g. for a specific level, you can insert `res://addons/jean28518.jTools/jSaveManager/jSaveModule.tscn` into your scene. It extends jSaveManager. jSaveModule is faster than jSaveManager because it is using an internal cache.
+
+##### Cache:
+- **write_to_disk()**: Writes cache to hard drive. Call is optional, jSaveModule writes to disk automatically.
+
+- **load_everything_into_cache()**: Loads everything from hard drive to cache. After this `get_value()` doesn't need read disk calls anymore.
+
+##### Save Path:
 
 Additionally you can change the path of the save file with `set_save_path(save_path : String)`. That works even ingame.
 You can also define the path of the save file in the inspector. The file extension is irrelevant. But make sure to use one. Otherwise some OS could have difficulties with it. Example of a save_path: `res://Levels/Level1/Level1.save`
