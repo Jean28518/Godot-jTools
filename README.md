@@ -47,8 +47,6 @@ It stores all saved data at `res://jSaveManager.save`. It can be changed in the 
 - **jSaveManager.get_value(key : String):** Gets the value which is stored under that key.
 If this value doesn't exist, null is returned.
 
-- **jSaveManager.reload():** Reloads cache of jSaveManager. If you duplicate some values with other objects in it, this function could be usefully.
-
 #### Example
 ```
 jSaveManager.save_value("level", 3)
@@ -63,6 +61,8 @@ If you need a local jSaveManager e.g. for a specific level, you can insert `res:
 - **write_to_disk()**: Writes cache to hard drive. Call is optional, jSaveModule writes to disk automatically.
 
 - **load_everything_into_cache()**: Loads everything from hard drive to cache. After this `get_value()` doesn't need read disk calls anymore.
+
+- **jSaveManager.reload():** Reloads cache of jSaveManager. If you duplicate some values with other objects in it, this function could be usefully.
 
 ##### Save Path:
 
