@@ -62,7 +62,7 @@ If you need a local jSaveManager e.g. for a specific level, you can insert `res:
 
 - **load_everything_into_cache()**: Loads everything from hard drive to cache. After this `get_value()` doesn't need read disk calls anymore.
 
-- **jSaveManager.reload():** Reloads cache of jSaveManager. If you duplicate some values with other objects in it, this function could be usefully.
+- **reload():** Reloads cache of jSaveModule. If you duplicate some values with other objects in it, this function could be usefully.
 
 ##### Save Path:
 
