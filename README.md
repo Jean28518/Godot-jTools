@@ -108,7 +108,7 @@ With it you can integrate an editable list very easily. jList is highly integrat
 While every user action jList checks its consistency. Also it can handle wrong user actions (e.g. trying to add a entry called `""` is not allowed) and doesn't send signals for these.
 
 #### Setup
-Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. See the example.tscn in Page2 how the jLists where Setup.
+Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.tscn` to your scene. Watch the example.tscn in Page2 how the jLists where setup.
 
 #### Customization
 - **ID**: You can give the jList a unique name, if you want. Over it you can access this jList via `jListManager.get_jList(id : String)` from everywhere in the code. Set it to `_random`, if a random id should be generated.
@@ -119,6 +119,8 @@ Setting up jList is very easy. Add `res://addons/jean28518.jTools/jTable/jTable.
 - **Update**: If you check this one, the configuration of the Button Configuration will be updated
 - **Enable * Button**: Self explainig. Every Button at jList can be activated/deactivated.
     - *(When Add Button is enabled, the user will be able to add by new entries by pressing enter in the edit line)*
+
+You also can define custom descriptions for buttons and messages. These are translated automatically from the internal godot translation server.
 
 #### Access in Code
 ##### jListManager
@@ -145,7 +147,7 @@ With these signals you can integrate jList very easy to your current enviorment.
 Signals are just emitted, if the user itself does something. While calling functions via code no signals are emitted.
 
 - **user_added_entry(entry_name : String)**
-- **user_removed_entries(entry_names : Array)** (array of strings)
+- **user_removed_entries(entry_names : Array)** (array of strings). Only sent when the user really removed entries.
 - **user_renamed_entry(old_name : String, new_name : String)**
 - **user_duplicated_entries(source_entry_names : Array, duplicated_entry_names : Array)** (arrays of strings)
 - **user_copied_entries(entry_names : String)**
