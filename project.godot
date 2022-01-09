@@ -8,8 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "jSaveModule",
+"language": "GDScript",
+"path": "res://addons/jean28518.jTools/jSaveManager/jSaveModule.gd"
+} ]
 _global_script_class_icons={
+"jSaveModule": ""
 }
 
 [application]

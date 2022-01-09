@@ -1,4 +1,3 @@
-tool
 extends Control
 
 signal user_added_entry(entry_name) # string
@@ -36,8 +35,8 @@ export (String) var paste_button_text = "Paste"
 export (String) var save_button_text = "Save"
 export (String) var action_button_text = "Custom Action"
 
-
 export (bool) var update setget update_visible_buttons
+
 
 func get_data():
 	var entry_names = []
@@ -45,14 +44,17 @@ func get_data():
 		entry_names.append(item_list.get_item_text(i))
 	return entry_names
 
+
 func set_data(entry_names : Array): # Input: Array of strings
 	clear()
 	for i in range (entry_names.size()):
 		item_list.add_item(entry_names[i])
 
+
 func clear():
 	item_list.clear()
 	$VBoxContainer/HBoxContainer/LineEdit.text = ""
+
 
 func add_entry(entry_name : String):
 	if only_unique_entries_allowed:
@@ -60,39 +62,35 @@ func add_entry(entry_name : String):
 	item_list.add_item(entry_name)
 	return entry_name
 
+
 func remove_entry(entry_name : String):
 	var entry_id = get_entry_id(entry_name)
 	if entry_id != -1:
 		remove_entry_id(entry_id)
 
+
 func has_entry(entry_name : String):
 	return -1 != get_entry_id(entry_name)
+
 
 func select_entry(entry_name : String):
 	if not has_entry(entry_name):
 		print_debug("jList " + name + ": Entry " + entry_name + " not found. Dont selecting anything...")
 	$VBoxContainer/ItemList.select(get_entry_id(entry_name))
 
+
 func get_size():
 	return item_list.get_item_count()#
 
-func revoke_last_user_action(message : String = ""):
-	if undo_buffer == null:
-		print_debug("jList " + name + ": Can't revoke last user action. Nothing stored in buffer.")
-		return
-	set_data(undo_buffer)
-	undo_buffer = null
 
-	if message != "":
-		$PopupDialog/Label.text = message
-	else:
-		$PopupDialog/Label.text = "This action is not allowed!"
+func show_error(message := "This action is not allowed!"):
+	$PopupDialog/Label.text = message
 	$PopupDialog.popup_centered_minsize()
+
 
 ## Internal Code ###############################################################
 var item_list
 
-var undo_buffer = null
 
 func _ready():
 	update_visible_buttons(true)
@@ -101,9 +99,12 @@ func _ready():
 	else:
 		$VBoxContainer/ItemList.select_mode = ItemList.SELECT_SINGLE
 
-func _process(delta):
-	if $VBoxContainer/HBoxContainer/LineEdit.has_focus() and enable_add_button and  Input.is_action_just_pressed("jList_enter"):
+
+func _unhandled_key_input(_event: InputEventKey) -> void:
+	if $VBoxContainer/HBoxContainer/LineEdit.has_focus() and enable_add_button \
+			and Input.is_action_just_pressed("ui_accept"):
 		_on_Add_pressed()
+
 
 func is_entry_name_unique(entry : String):
 	for i in range(get_size()):
@@ -111,16 +112,19 @@ func is_entry_name_unique(entry : String):
 			return true
 	return false
 
+
 func get_entry_id(entry : String):
 	for i in range(get_size()):
 		if item_list.get_item_text(i) == entry:
 			return i
 	return -1
 
+
 func get_unique_entry_name(entry_name : String):
 	while is_entry_name_unique(entry_name):
 		entry_name = entry_name + entry_duplicate_text
 	return entry_name
+
 
 func rename_entry_id(entry_id : int, new_entry_name : String):
 	if entry_id >= get_size():
@@ -131,14 +135,17 @@ func rename_entry_id(entry_id : int, new_entry_name : String):
 	item_list.set_item_text(entry_id, new_entry_name)
 	return new_entry_name
 
+
 func duplicate_entry_id(entry_id : int):
 	return add_entry(item_list.get_item_text(entry_id))
+
 
 func remove_entry_id(entry_id : int):
 	if entry_id >= get_size():
 		print_debug("jList " + name + ": remove_entry_id(): entry_id out of bounds! Skipping...")
 		return
 	item_list.remove_item(entry_id)
+
 
 func update_visible_buttons(newvar):
 	$VBoxContainer/HBoxContainer/Add.visible = enable_add_button
@@ -162,6 +169,7 @@ func update_visible_buttons(newvar):
 	_update_fonts()
 	update = false
 
+
 func _update_fonts():
 	if custom_font_path == "":
 		return
@@ -182,6 +190,7 @@ func _update_fonts():
 	$PopupDialog/Label.add_font_override("font", font)
 	$PopupDialog/Okay.add_font_override("font", font)
 
+
 ## Button Signals ##############################################################
 func _enter_tree():
 	item_list = $VBoxContainer/ItemList
@@ -191,29 +200,25 @@ func _enter_tree():
 			id = String(randi())
 		else:
 			id = _id
-		jListManager.register_jList(self)
 
-func _exit_tree():
-	jListManager.deregister_jList(self)
 
 func _on_Add_pressed():
 	if $VBoxContainer/HBoxContainer/LineEdit.text == "":
 		return
-	undo_buffer = get_data()
 	var entry_name = add_entry($VBoxContainer/HBoxContainer/LineEdit.text)
 	$VBoxContainer/HBoxContainer/LineEdit.text = ""
 	emit_signal("user_added_entry", entry_name)
 
+
 func _on_Remove_pressed():
 	if item_list.get_selected_items().size() == 0:
 		return
-	undo_buffer = get_data()
 	var removed_entries = []
 	while item_list.get_selected_items().size() != 0:
 		removed_entries.append(item_list.get_item_text(item_list.get_selected_items()[0]))
 		remove_entry_id(item_list.get_selected_items()[0])
-
 	emit_signal("user_removed_entries", removed_entries)
+
 
 func _on_Rename_pressed():
 	var new_text = $VBoxContainer/HBoxContainer/LineEdit.text
@@ -225,48 +230,47 @@ func _on_Rename_pressed():
 		return
 	if new_text == old_text:
 		return
-	undo_buffer = get_data()
 	rename_entry_id(entry_id, new_text)
 	emit_signal("user_renamed_entry", old_text, new_text)
 	$VBoxContainer/HBoxContainer/LineEdit.text = ""
 
+
 func _on_Duplicate_pressed():
 	if  item_list.get_selected_items().size() == 0:
 		return
-	undo_buffer = get_data()
 	var source_entry_ids = item_list.get_selected_items()
 	var source_entry_names = []
 	var duplicated_entry_names = []
 	for entry_id in source_entry_ids:
 		source_entry_names.append(item_list.get_item_text(entry_id))
 		duplicated_entry_names.append(duplicate_entry_id(entry_id))
-
 	emit_signal("user_duplicated_entries", source_entry_names, duplicated_entry_names)
+
 
 func _on_Copy_pressed(): # stores the current entry_names into the global buffer
 	if  item_list.get_selected_items().size() == 0:
 		return
-	undo_buffer = get_data()
 	var source_entry_names = []
 	var source_entry_ids = item_list.get_selected_items()
 	for entry_id in source_entry_ids:
 		source_entry_names.append(item_list.get_item_text(entry_id))
-	jListManager.set_buffer(self, source_entry_names)
+	OS.clipboard = var2str(source_entry_names)
 	emit_signal("user_copied_entries", source_entry_names)
 
+
 func _on_Paste_pressed(): # Adds entry_names from global buffer into jList.
-	var source_entry_names = jListManager.get_buffer()
+	var source_entry_names = str2var(OS.clipboard)
 	if source_entry_names == null:
 		return
-	undo_buffer = get_data()
 	var pasted_entry_names = []
 	for source_entry in source_entry_names:
 		pasted_entry_names.append(add_entry(source_entry))
-	emit_signal("user_pasted_entries", source_entry_names, jListManager.get_buffer_source_jList_id(), pasted_entry_names)
+	emit_signal("user_pasted_entries", source_entry_names, id, pasted_entry_names)
 
 
 func _on_Save_pressed():
 	emit_signal("user_pressed_save", get_data())
+
 
 func _on_Action_pressed():
 	if  item_list.get_selected_items().size() == 0:
@@ -279,12 +283,18 @@ func _on_Action_pressed():
 
 
 func _on_ItemList_item_activated(index):
-	$VBoxContainer/HBoxContainer/LineEdit.text = item_list.get_item_text(index)
+	_on_Action_pressed()
+
 
 func _on_PopupDiaglog_Okay_pressed():
 	$PopupDialog.hide()
+
 
 func _on_ItemList_multi_selected(index, selected):
 	var selected_items = item_list.get_selected_items()
 	if selected_items.size() == 1:
 		emit_signal("user_selected_entry", item_list.get_item_text(selected_items[0]))
+
+
+func _on_ItemList_item_selected(index):
+	$VBoxContainer/HBoxContainer/LineEdit.text = item_list.get_item_text(index)

@@ -1,16 +1,15 @@
-tool
 extends Node
 
 
 func call_delayed(delay : float, object : Object, method : String, arg_array : Array = []):
-	delayed_call_table.delay.append(delay)
-	delayed_call_table.object.append(object)
-	delayed_call_table.method.append(method)
-	delayed_call_table.arg_array.append(arg_array)
+	_delayed_call_table.delay.append(delay)
+	_delayed_call_table.object.append(object)
+	_delayed_call_table.method.append(method)
+	_delayed_call_table.arg_array.append(arg_array)
 
 
 func remove_all_pending_delayed_calls():
-	initialize_delayed_call_table()
+	_delayed_call_table = {"delay" : [], "object" : [], "method" : [], "arg_array" : [] }
 
 
 func find_files_recursively(directory_path : String, file_extension : String):
@@ -30,6 +29,20 @@ func copy_folder_recursively(from : String, to : String):
 		to += "/"
 	_copy_folder_recursively_helper(from, to)
 
+
+func create_directory(path : String):
+	var dir = Directory.new()
+	dir.make_dir_recursive(path)
+
+
+func copy_file(from : String, to : String):
+	var dir = Directory.new()
+	dir.copy(from, to)
+
+# Could be also used for moving files
+func rename_file(from: String, to : String):
+	var dir = Directory.new()
+	dir.rename(from, to)
 
 func remove_folder_recursively(path: String):
 	var dir = Directory.new()
@@ -53,7 +66,7 @@ func remove_folder_recursively(path: String):
 	dir.remove(path)
 
 
-func remove_duplicates(array : Array):
+func remove_duplicates(array : Array) -> Array:
 	var return_value = []
 	for item in array:
 		if not return_value.has(item):
@@ -70,6 +83,10 @@ func show_message(message : String, title : String = ""):
 	message_box.anchor_right = 0.5
 	message_box.anchor_top = 0.5
 	message_box.anchor_bottom = 0.5
+	message_box.pause_mode = Node.PAUSE_MODE_PROCESS
+	_saved_mouse_mode = Input.get_mouse_mode()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	message_box.connect("confirmed", self, "_on_message_box_okay_pressed")
 	message_box.show()
 
 
@@ -78,12 +95,6 @@ func does_path_exist(path : String):
 	return dir.dir_exists(path) or dir.file_exists(path)
 
 
-func crawl_directory_for(directory_path : String,file_extension : String) -> Array: 
-	var dir = Directory.new()
-	var found_files = {"Array" : []}
-	crawl_directory_for_helper(directory_path, found_files, file_extension)
-	return found_files["Array"]
-	
 func get_subfolders_of(directory_path : String):
 	var dir = Directory.new()
 	if dir.open(directory_path) != OK: return
@@ -99,36 +110,34 @@ func get_subfolders_of(directory_path : String):
 	return folder_names
 
 
-## Internal Functions ##########################################################
+## Internal Code ###############################################################
+
+var _delayed_call_table := {"delay" : [], "object" : [], "method" : [], "arg_array" : [] }
+var _saved_mouse_mode
 
 
 func _ready():
-	initialize_delayed_call_table()
-
-
-func initialize_delayed_call_table():
-	delayed_call_table = {"delay" : [], "object" : [], "method" : [], "arg_array" : [] }
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
 func _process(delta):
+	if get_tree().paused:
+		return
 	_handle_delayed_calls(delta)
-
-
-var delayed_call_table
 
 
 func _handle_delayed_calls(delta):
 	var i = 0
-	while(i < delayed_call_table.delay.size()): ## We need here a while loop, because want to keep track of the (changing) table size.
-		delayed_call_table.delay[i] -= delta
-		if delayed_call_table.delay[i] <= 0:
-			var object = delayed_call_table.object[i]
+	while(i < _delayed_call_table.delay.size()): ## We need here a while loop, because want to keep track of the (changing) table size.
+		_delayed_call_table.delay[i] -= delta
+		if _delayed_call_table.delay[i] <= 0:
+			var object = _delayed_call_table.object[i]
 			if is_instance_valid(object):
-				object.callv(delayed_call_table.method[i], delayed_call_table.arg_array[i])
-			delayed_call_table.delay.remove(i)
-			delayed_call_table.object.remove(i)
-			delayed_call_table.method.remove(i)
-			delayed_call_table.arg_array.remove(i)
+				object.callv(_delayed_call_table.method[i], _delayed_call_table.arg_array[i])
+			_delayed_call_table.delay.remove(i)
+			_delayed_call_table.object.remove(i)
+			_delayed_call_table.method.remove(i)
+			_delayed_call_table.arg_array.remove(i)
 			i -= 1 ## Because we remove here an entry
 		i += 1
 
@@ -177,26 +186,5 @@ func _copy_folder_recursively_helper(from, to):
 	dir.list_dir_end()
 
 
-func crawl_directory_for_helper(directory_path : String, found_files : Dictionary, file_extension : String):
-	var dir = Directory.new()
-	if dir.open(directory_path) != OK: 
-		return
-	dir.list_dir_begin()
-	while(true):
-		var file = dir.get_next()
-		if file == "": break
-		if file.begins_with("."): continue
-		if dir.current_is_dir():
-			if directory_path.ends_with("/"):
-				crawl_directory_for_helper(directory_path+file, found_files, file_extension)
-			else:
-				crawl_directory_for_helper(directory_path+"/"+file, found_files, file_extension)
-		else:
-			if file.get_extension() == file_extension:
-				var export_string 
-				if directory_path.ends_with("/"):
-					export_string = directory_path + file
-				else:
-					export_string = directory_path + "/" + file
-				found_files["Array"].append(export_string)
-	dir.list_dir_end()
+func _on_message_box_okay_pressed():
+	Input.set_mouse_mode(_saved_mouse_mode)

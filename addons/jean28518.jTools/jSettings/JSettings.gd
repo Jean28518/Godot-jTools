@@ -1,6 +1,6 @@
 extends Control
 
-func open_window():
+func popup():
 	var node = get_tree().get_current_scene()
 	var instance = self.duplicate()
 	node.add_child(instance)
@@ -119,7 +119,7 @@ func set_game_volume(val : float):
 
 func get_game_volume():
 	return jSaveManager.get_setting("gameVolume")
-	
+
 
 ## Other Functionality #########################################################
 
@@ -131,14 +131,14 @@ func update_and_prepare_language_handling():
 		$ScrollContainer/GridContainer/Label7.hide()
 		$ScrollContainer/GridContainer/Language.hide()
 		return
-		
-	
+
+
 	# Prepare _language_table
 	language_codes.sort()
 	_language_table.clear()
 	for i in language_codes.size():
 		_language_table[language_codes[i]] = i
-		
+
 	# Prepare language selection
 	for index in range(_language_table.size()):
 		$ScrollContainer/GridContainer/Language.add_item("",index)

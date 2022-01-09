@@ -136,8 +136,8 @@ Can be accessed from everywhere.
 - **remove_entry(entry_name : String):** Self explaining. Does nothing if entry_name wasn't found in this list.
 - **has_entry(entry_name : String):** Self explaining. Returns a bool.
 - **select_entry(entry_name : String):** Selects an entry. The users sees the selected entry in the end.
-- **get_size()** Returns the current size of the list.
-- **revoke_last_user_action(message : String = "")**: You can revoke the last user action. So if the user does something illegal for you, you can revoke this, and display optionally an popup Message. This function does not emit any signals.
+- **get_size():** Returns the current size of the list.
+- **show_error(message := "This action is not allowed!")**
 
 ##### jList Signals
 With these signals you can integrate jList very easy to your current enviorment.
@@ -182,7 +182,7 @@ If you want you could define specific game and music bus ids in the jConfig.gd f
 ```
 
 ### jSettings
-*Currently unfortunately jSettings doesn't offer the comfort you have for example in jList. You can see jSettings as a good template/starting point.*
+*Currently unfortunately jSettings doesn't offer the comfort you have for example in jList. You can use jSettings as a good template/starting point.*
 
 #### Features:
 - Automatic language handling - Just load in the translation files. Rest is done by jSettings.
@@ -194,7 +194,7 @@ If you want you could define specific game and music bus ids in the jConfig.gd f
 
 #### How to use
 
-When you call the function `jSettings.open_window()`. The Settings window opens. Everywhere. The game won't be paused. But the option window also can work while the game is paused.
+When you call the function `jSettings.popup()`. The Settings window opens. Everywhere. The game won't be paused. But the option window also can work while the game is paused.
 
 #### Customization
 
@@ -212,6 +212,12 @@ It's a collection of simple methods, which make developing a lot cleaner and eas
 - **jEssentials.find_files_recursively(directory_path : String, file_extension : String)**: With this function you can crawl a directory for a specific file extension. It returns an array of Strings containing the full path of the files. Ignores files beginning with a `.`. *(This function works recursively. Crawling over big directorys could cause lags)* Example: `var scripts = jEssentials.find_files_recursively("res://", "gd")`
 
 - **jEssentials.copy_folder_recursively(from : String, to : String)**: Copies whole folder with all content and subfolders to another location. Overwrites existing files.
+
+- **jEssentials.create_direcotry(path: String):** Creates one or more directories to the given path.
+
+- **jEssentials.copy_file(from: String, to: String)**
+
+- **jEssentials.rename_file(from: String, to: String)**
 
 - **jEssentials.remove_folder_recursively(path: String)**: Removes all files and all subfolders.
 

@@ -179,9 +179,6 @@ margin_left = 9.41995
 margin_top = 36.1179
 margin_right = 200.42
 margin_bottom = 60.1179
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Save" type="Button" parent="SaveLoadExample"]
 margin_left = 211.667
